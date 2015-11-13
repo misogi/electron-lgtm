@@ -20,6 +20,9 @@
         "!node_modules/**"
     ],
     "files": [
-        "index.ts"
+        "index.ts",
+        "main.ts",
+        "typings/node/node.d.ts",
+        "typings/tsd.d.ts"
     ]
 }
