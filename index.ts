@@ -19,3 +19,30 @@ button.onclick = () => {
     }
   });
 };
+
+var recognition = new webkitSpeechRecognition();
+recognition.lang = 'ja-JP';
+
+var msg = new SpeechSynthesisUtterance();
+msg.volume = 1;
+msg.rate = 1;
+msg.pitch = 1;
+msg.lang = 'ja-JP';
+
+var resultText = document.getElementById("result");
+var recordButton = document.getElementById("record");
+
+recognition.onresult = function(event){
+    var text = event.results.item(0).item(0).transcript;
+    resultText.innerText = text;
+    msg.text = text;
+    speechSynthesis.speak(msg);
+};
+
+recognition.onnomatch = function(){
+    resultText.innerText = "もう一度試してください";
+};
+
+recordButton.onclick = () => {
+    recognition.start();
+}

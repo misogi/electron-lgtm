@@ -2,7 +2,7 @@
 
 electron
 
-    npm -g install electron-prebuilt
+    npm install
 
 typescript
 
@@ -11,7 +11,11 @@ typescript
 tsd
 
     npm -g tsd
-    tsd install node --save
+    tsd install
+
+## 実行
+
+    $(npm bin)/electron .
 
 ## 参考
 
