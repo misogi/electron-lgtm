@@ -15,8 +15,14 @@ tsd
 
 ## 実行
 
+環境変数をセット
+
+    # windows
+    >set SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
+
+    # Unix
+    $ export SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
+
+実行
+
     $(npm bin)/electron .
-
-## 参考
-
-http://qiita.com/fnobi/items/f6b1574fb9f4518ed520

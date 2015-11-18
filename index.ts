@@ -1,8 +1,4 @@
 'use strict';
-import https = require('https');
-import querystring = require('querystring');
-var jsesc = require('jsesc');
-var util = require('util');
 
 var button = document.getElementById("fetch");
 var disp = document.getElementById("display");
@@ -52,41 +48,21 @@ recognition.onend = function(){
     indicator.innerText = "";
 }
 
-var postText = jsesc('こんにちは世界');
-var postData = util.format("%j", {
-  'text': 'あ'
-});
-
-console.debug(postText);
-console.debug(postData);
-
 var httpOptions = {
-  hostname: 'hooks.slack.com',
-  path: '/services/T02JVGSTV/B09A11T7S/IoLVQ8RalaDsfJVSg8tTngPH',
-  method: 'POST',
+  uri: process.env.SLACK_WEBHOOK_URL,
+  body: JSON.stringify({
+    'text': 'こんにちは世界'
+  }),
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Content-Length': postData.length
+    'Content-Type': 'application/json'
   }
 };
-
-var req = https.request(httpOptions, function(res) {
-  res.setEncoding('utf8');
-  res.on('data', function(chunk){
-    console.log('Body: ' + chunk);
-  });
-  res.on('end', function() {
-    console.log('end');
-  })
-});
-
-req.on('error', function(e) {
-  console.log('problem with request: ' + e.message);
-});
 
 recordButton.onclick = () => {
     recognition.start();
     indicator.innerText = "しゃべってください";
-    req.write(util.format("%j", postData), 'utf8');
-    req.end();
-}
+    request.post(httpOptions, function(err, res, body) {
+      console.log(body);
+      console.log(res);
+    });
+};
