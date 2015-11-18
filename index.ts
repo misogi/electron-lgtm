@@ -1,4 +1,6 @@
 'use strict';
+import https = require('https');
+import querystring = require('querystring');
 
 var button = document.getElementById("fetch");
 var disp = document.getElementById("display");
@@ -30,6 +32,7 @@ msg.pitch = 1;
 msg.lang = 'ja-JP';
 
 var resultText = document.getElementById("result");
+var indicator = document.getElementById("indicator");
 var recordButton = document.getElementById("record");
 
 recognition.onresult = function(event){
@@ -43,6 +46,41 @@ recognition.onnomatch = function(){
     resultText.innerText = "もう一度試してください";
 };
 
+recognition.onend = function(){
+    indicator.innerText = "";
+}
+
+var postData = JSON.stringify({
+  'text': 'こんにちは世界'
+});
+
+var httpOptions = {
+  hostname: 'hooks.slack.com',
+  path: '/services/T02JVGSTV/B09A11T7S/IoLVQ8RalaDsfJVSg8tTngPH',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Length': postData.length
+  }
+};
+
+var req = https.request(httpOptions, function(res) {
+  res.setEncoding('utf8');
+  res.on('data', function(chunk){
+    console.log('Body: ' + chunk);
+  });
+  res.on('end', function() {
+    console.log('end');
+  })
+});
+
+req.on('error', function(e) {
+  console.log('problem with request: ' + e.message);
+});
+
 recordButton.onclick = () => {
     recognition.start();
+    indicator.innerText = "しゃべってください";
+    req.write(postData, 'utf8');
+    req.end();
 }
