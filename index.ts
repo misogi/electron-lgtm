@@ -1,6 +1,8 @@
 'use strict';
 import https = require('https');
 import querystring = require('querystring');
+var jsesc = require('jsesc');
+var util = require('util');
 
 var button = document.getElementById("fetch");
 var disp = document.getElementById("display");
@@ -50,9 +52,13 @@ recognition.onend = function(){
     indicator.innerText = "";
 }
 
-var postData = JSON.stringify({
-  'text': 'こんにちは世界'
+var postText = jsesc('こんにちは世界');
+var postData = util.format("%j", {
+  'text': 'あ'
 });
+
+console.debug(postText);
+console.debug(postData);
 
 var httpOptions = {
   hostname: 'hooks.slack.com',
@@ -81,6 +87,6 @@ req.on('error', function(e) {
 recordButton.onclick = () => {
     recognition.start();
     indicator.innerText = "しゃべってください";
-    req.write(postData, 'utf8');
+    req.write(util.format("%j", postData), 'utf8');
     req.end();
 }
