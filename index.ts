@@ -12,7 +12,7 @@ var options = {
 };
 
 button.onclick = () => {
-  request(options, function (error, response, body) {
+  request(options, (error, response, body) => {
     if (!error && response.statusCode == 200) {
       var info = JSON.parse(body);
       disp.setAttribute('src', info.imageUrl);
@@ -33,18 +33,18 @@ var resultText = document.getElementById("result");
 var indicator = document.getElementById("indicator");
 var recordButton = document.getElementById("record");
 
-recognition.onresult = function(event){
+recognition.onresult = (event) => {
     var text = event.results.item(0).item(0).transcript;
     resultText.innerText = text;
     msg.text = text;
     speechSynthesis.speak(msg);
 };
 
-recognition.onnomatch = function(){
+recognition.onnomatch = () => {
     resultText.innerText = "もう一度試してください";
 };
 
-recognition.onend = function(){
+recognition.onend = () => {
     indicator.innerText = "";
 }
 
@@ -61,7 +61,7 @@ var httpOptions = {
 recordButton.onclick = () => {
     recognition.start();
     indicator.innerText = "しゃべってください";
-    request.post(httpOptions, function(err, res, body) {
+    request.post(httpOptions, (err, res, body) => {
       console.log(body);
       console.log(res);
     });
