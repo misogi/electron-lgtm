@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Electron Read Us</title>
-</head>
-<body>
-<h1>Hello, electron!</h1>
-<button type="button" name="button" id="fetch">LGTM</button>
-<img id="display">
-</img>
 
-<input type="button" id="record" value="録音開始" />
-<div id="result">
-</div>
-<div id="indicator">
-  a
-</div>
-<script src="index.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <title>Electron Read Us</title>
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+  <h1>Hello, electron!</h1>
+
+  <input type="button" id="fetch" value="録音開始" />
+  <div id="result">
+  </div>
+
+  <div class="circle" id="record-circle">
+    <i class="fa fa-microphone"></i>
+    <a href="#" id="record">
+    </a>
+  </div>
+  <div id="indicator">
+    a
+  </div>
+  <img id="display">
+  </img>
+  <script src="index.js"></script>
 </body>
+
 </html>

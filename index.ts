@@ -32,11 +32,19 @@ msg.lang = 'ja-JP';
 var resultText = document.getElementById("result");
 var indicator = document.getElementById("indicator");
 var recordButton = document.getElementById("record");
+var recordCircle = document.getElementById("record-circle");
 
 recognition.onresult = (event) => {
     var text = event.results.item(0).item(0).transcript;
-    resultText.innerText = text;
-    msg.text = text;
+    var responceVoice;
+    if (text.match(/ハッピーグルメ弁当/)) {
+      responceVoice = 'どんどん？';
+      disp.setAttribute('src', 'img/dondon.jpg');
+    } else {
+      responceVoice = text;
+    }
+
+    msg.text = resultText.innerText = responceVoice;
     speechSynthesis.speak(msg);
 };
 
@@ -45,6 +53,7 @@ recognition.onnomatch = () => {
 };
 
 recognition.onend = () => {
+    recordCircle.classList.remove("active");
     indicator.innerText = "";
 }
 
@@ -61,8 +70,7 @@ var httpOptions = {
 recordButton.onclick = () => {
     recognition.start();
     indicator.innerText = "しゃべってください";
-    request.post(httpOptions, (err, res, body) => {
-      console.log(body);
-      console.log(res);
-    });
+    recordCircle.classList.add("active");
+    // request.post(httpOptions, (err, res, body) => {
+    // });
 };
