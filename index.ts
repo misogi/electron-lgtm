@@ -33,17 +33,19 @@ var resultText = document.getElementById("result");
 var indicator = document.getElementById("indicator");
 var recordButton = document.getElementById("record");
 var recordCircle = document.getElementById("record-circle");
+var inputBalloon = document.getElementById("input-balloon");
 
 recognition.onresult = (event) => {
-    var text = event.results.item(0).item(0).transcript;
+    var inputText = event.results.item(0).item(0).transcript;
     var responceVoice;
-    if (text.match(/ハッピーグルメ弁当/)) {
+    if (inputText.match(/ハッピーグルメ弁当/)) {
       responceVoice = 'どんどん？';
       disp.setAttribute('src', 'img/dondon.jpg');
     } else {
-      responceVoice = text;
+      responceVoice = inputText;
     }
 
+    inputBalloon.innerText = inputText;
     msg.text = resultText.innerText = responceVoice;
     speechSynthesis.speak(msg);
 };
