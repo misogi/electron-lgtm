@@ -1,11 +1,11 @@
 'use strict';
 
-var app = require('app');
-var BrowserWindow = require('browser-window');
+let app = require('app');
+let BrowserWindow = require('browser-window');
 
 require('crash-reporter').start();
 
-var mainWindow = null;
+let mainWindow = null;
 
 app.on('window-all-closed', () => {
   if (process.platform != 'darwin') {

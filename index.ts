@@ -1,9 +1,9 @@
 'use strict';
 
-var button = document.getElementById("fetch");
-var disp = document.getElementById("display");
-var request = require('request');
-var options = {
+let button = document.getElementById("fetch");
+let disp = document.getElementById("display");
+let request = require('request');
+let options = {
   url: 'http://www.lgtm.in/g',
   headers: {
     'Accept': 'application/json',
@@ -20,23 +20,23 @@ button.onclick = () => {
   });
 };
 
-var recognition = new webkitSpeechRecognition();
+let recognition = new webkitSpeechRecognition();
 recognition.lang = 'ja-JP';
 
-var msg = new SpeechSynthesisUtterance();
+let msg = new SpeechSynthesisUtterance();
 msg.volume = 1;
 msg.rate = 1;
 msg.pitch = 1;
 msg.lang = 'ja-JP';
 
-var resultText = document.getElementById("result");
-var indicator = document.getElementById("indicator");
-var recordButton = document.getElementById("record");
-var recordCircle = document.getElementById("record-circle");
+let resultText = document.getElementById("result");
+let indicator = document.getElementById("indicator");
+let recordButton = document.getElementById("record");
+let recordCircle = document.getElementById("record-circle");
 
 recognition.onresult = (event) => {
-    var text = event.results.item(0).item(0).transcript;
-    var responceVoice;
+    let text = event.results.item(0).item(0).transcript;
+    let responceVoice;
     if (text.match(/ハッピーグルメ弁当/)) {
       responceVoice = 'どんどん？';
       disp.setAttribute('src', 'img/dondon.jpg');
@@ -57,7 +57,7 @@ recognition.onend = () => {
     indicator.innerText = "";
 }
 
-var httpOptions = {
+let httpOptions = {
   uri: process.env.SLACK_WEBHOOK_URL,
   body: JSON.stringify({
     'text': 'こんにちは世界'

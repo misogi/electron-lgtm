@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "module": "commonjs",
         "moduleResolution": "node",
         "isolatedModules": false,
@@ -25,5 +25,8 @@
         "typings/node/node.d.ts",
         "typings/tsd.d.ts",
         "typings/webspeechapi/webspeechapi.d.ts"
-    ]
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    }
 }
