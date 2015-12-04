@@ -1,9 +1,9 @@
 'use strict';
 
-let button = document.getElementById("fetch");
-let disp = document.getElementById("display");
-let request = require('request');
-let options = {
+const button = document.getElementById("fetch");
+const disp = document.getElementById("display");
+const request = require('request');
+const options = {
   url: 'http://www.lgtm.in/g',
   headers: {
     'Accept': 'application/json',
@@ -20,22 +20,21 @@ button.onclick = () => {
   });
 };
 
-let recognition = new webkitSpeechRecognition();
+const recognition = new webkitSpeechRecognition();
 recognition.lang = 'ja-JP';
 
-let msg = new SpeechSynthesisUtterance();
+const msg = new SpeechSynthesisUtterance();
 msg.volume = 1;
 msg.rate = 1;
 msg.pitch = 1;
 msg.lang = 'ja-JP';
-
-let resultText = document.getElementById("result");
-let indicator = document.getElementById("indicator");
-let recordButton = document.getElementById("record");
-let recordCircle = document.getElementById("record-circle");
+const resultText = document.getElementById("result");
+const indicator = document.getElementById("indicator");
+const recordButton = document.getElementById("record");
+const recordCircle = document.getElementById("record-circle");
 
 recognition.onresult = (event) => {
-    let text = event.results.item(0).item(0).transcript;
+    const text = event.results.item(0).item(0).transcript;
     let responceVoice;
     if (text.match(/ハッピーグルメ弁当/)) {
       responceVoice = 'どんどん？';
@@ -57,7 +56,7 @@ recognition.onend = () => {
     indicator.innerText = "";
 }
 
-let httpOptions = {
+const httpOptions = {
   uri: process.env.SLACK_WEBHOOK_URL,
   body: JSON.stringify({
     'text': 'こんにちは世界'

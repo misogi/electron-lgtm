@@ -1,7 +1,7 @@
 'use strict';
 
-let app = require('app');
-let BrowserWindow = require('browser-window');
+const app = require('app');
+const BrowserWindow = require('browser-window');
 
 require('crash-reporter').start();
 
