@@ -2,6 +2,8 @@
 
 const button = document.getElementById("fetch");
 const disp = document.getElementById("display");
+const ab = require('./slack');
+
 const request = require('request');
 const options = {
   url: 'http://www.lgtm.in/g',

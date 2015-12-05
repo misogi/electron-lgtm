@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "module": "commonjs",
         "moduleResolution": "node",
         "isolatedModules": false,
         "jsx": "react",
@@ -22,6 +21,7 @@
     "files": [
         "index.ts",
         "main.ts",
+        "slack.ts",
         "typings/node/node.d.ts",
         "typings/tsd.d.ts",
         "typings/webspeechapi/webspeechapi.d.ts"
