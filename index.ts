@@ -37,7 +37,7 @@ const inputBalloon = document.getElementById("input-balloon");
 recognition.onresult = (event) => {
     const inputText = event.results.item(0).item(0).transcript;
     let responceVoice;
-    if (text.match(/ハッピーグルメ弁当/)) {
+    if (inputText.match(/ハッピーグルメ弁当/)) {
       responceVoice = 'どんどん？';
       disp.setAttribute('src', 'img/dondon.jpg');
     } else {
