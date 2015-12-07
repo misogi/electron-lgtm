@@ -19,6 +19,7 @@ export class Speech {
     const inputBalloon = document.getElementById('input-balloon');
     const outputBalloon = document.getElementById('output-balloon');
     const resultImage = document.getElementById('display');
+    const voicesArea = document.getElementById('voices');
 
     this.recognition.onresult = (event: SpeechRecognitionEvent) => {
         const inputText: string = event.results.item(0).item(0).transcript;
@@ -34,6 +35,8 @@ export class Speech {
         this.synth.text = responceVoice;
         outputBalloon.innerText = responceVoice;
         speechSynthesis.speak(this.synth);
+        voicesArea.classList.add('visible');
+        voicesArea.classList.remove('collapse');
     };
 
     this.recognition.onnomatch = () => {
@@ -49,6 +52,8 @@ export class Speech {
         this.recognition.start();
         indicator.innerText = 'しゃべってください';
         recordCircle.classList.add('active');
+        voicesArea.classList.add('collapse');
+        voicesArea.classList.remove('visible');
     };
   }
 }

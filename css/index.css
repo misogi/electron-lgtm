@@ -44,6 +44,17 @@ div.active {
 .center {
   text-align: center;
 }
+.bottom {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.collapse {
+  visibility: collapse;
+}
+.visible {
+  visibility: visible;
+}
 
 .balloon-left {
 	position: relative;
