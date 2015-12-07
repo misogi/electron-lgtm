@@ -1,21 +1,26 @@
 'use strict';
 export class Speech {
-  constructor() {
-    const recognition = new webkitSpeechRecognition();
-    recognition.lang = 'ja-JP';
+  private recognition: SpeechRecognition;
+  private synth: SpeechSynthesisUtterance;
 
-    const msg = new SpeechSynthesisUtterance();
-    msg.volume = 1;
-    msg.rate = 1;
-    msg.pitch = 1;
-    msg.lang = 'ja-JP';
-    const indicator: HTMLElement = document.getElementById('indicator');
+  constructor() {
+    this.recognition = new webkitSpeechRecognition();
+    this.recognition.lang = 'ja-JP';
+
+    this.synth = new SpeechSynthesisUtterance();
+    this.synth.volume = 1;
+    this.synth.rate = 1;
+    this.synth.pitch = 1;
+    this.synth.lang = 'ja-JP';
+
+    const indicator = document.getElementById('indicator');
     const recordButton = document.getElementById('record');
     const recordCircle = document.getElementById('record-circle');
     const inputBalloon = document.getElementById('input-balloon');
+    const outputBalloon = document.getElementById('output-balloon');
     const resultImage = document.getElementById('display');
 
-    recognition.onresult = (event) => {
+    this.recognition.onresult = (event: SpeechRecognitionEvent) => {
         const inputText: string = event.results.item(0).item(0).transcript;
         let responceVoice: string;
         if (inputText.match(/ハッピーグルメ弁当/)) {
@@ -26,21 +31,22 @@ export class Speech {
         }
 
         inputBalloon.innerText = inputText;
-        msg.text = responceVoice;
-        speechSynthesis.speak(msg);
+        this.synth.text = responceVoice;
+        outputBalloon.innerText = responceVoice;
+        speechSynthesis.speak(this.synth);
     };
 
-    recognition.onnomatch = () => {
+    this.recognition.onnomatch = () => {
         inputBalloon.innerText = 'もう一度試してください';
     };
 
-    recognition.onend = () => {
+    this.recognition.onend = () => {
         recordCircle.classList.remove('active');
         indicator.innerText = '';
     };
 
     recordButton.onclick = () => {
-        recognition.start();
+        this.recognition.start();
         indicator.innerText = 'しゃべってください';
         recordCircle.classList.add('active');
     };
