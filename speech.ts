@@ -9,18 +9,18 @@ export class Speech {
     msg.rate = 1;
     msg.pitch = 1;
     msg.lang = 'ja-JP';
-    const indicator: HTMLElement = document.getElementById("indicator");
-    const recordButton = document.getElementById("record");
-    const recordCircle = document.getElementById("record-circle");
-    const inputBalloon = document.getElementById("input-balloon");
-    const disp = document.getElementById("display");
+    const indicator: HTMLElement = document.getElementById('indicator');
+    const recordButton = document.getElementById('record');
+    const recordCircle = document.getElementById('record-circle');
+    const inputBalloon = document.getElementById('input-balloon');
+    const resultImage = document.getElementById('display');
 
     recognition.onresult = (event) => {
         const inputText: string = event.results.item(0).item(0).transcript;
         let responceVoice: string;
         if (inputText.match(/ハッピーグルメ弁当/)) {
           responceVoice = 'どんどん？';
-          disp.setAttribute('src', 'img/dondon.jpg');
+          resultImage.setAttribute('src', 'img/dondon.jpg');
         } else {
           responceVoice = inputText;
         }
@@ -31,18 +31,18 @@ export class Speech {
     };
 
     recognition.onnomatch = () => {
-        inputBalloon.innerText = "もう一度試してください";
+        inputBalloon.innerText = 'もう一度試してください';
     };
 
     recognition.onend = () => {
-        recordCircle.classList.remove("active");
-        indicator.innerText = "";
+        recordCircle.classList.remove('active');
+        indicator.innerText = '';
     };
 
     recordButton.onclick = () => {
         recognition.start();
-        indicator.innerText = "しゃべってください";
-        recordCircle.classList.add("active");
+        indicator.innerText = 'しゃべってください';
+        recordCircle.classList.add('active');
     };
   }
 }

@@ -1,5 +1,5 @@
 'use strict';
-const request = require("request");
+import * as request from 'request';
 export class Slack {
   private httpOptions: any;
 
