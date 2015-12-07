@@ -1,15 +1,13 @@
 'use strict';
-const app = require('app');
+const app: GitHubElectron.App = require('app');
 const BrowserWindow = require('browser-window');
 
 require('crash-reporter').start();
 
-let mainWindow = null;
+let mainWindow: GitHubElectron.BrowserWindow = null;
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+  app.quit();
 });
 
 app.on('ready', () => {
