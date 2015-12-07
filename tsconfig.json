@@ -22,6 +22,7 @@
         "index.ts",
         "main.ts",
         "slack.ts",
+        "speech.ts",
         "typings/node/node.d.ts",
         "typings/tsd.d.ts",
         "typings/webspeechapi/webspeechapi.d.ts"
