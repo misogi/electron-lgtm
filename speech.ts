@@ -32,7 +32,7 @@ class Speech
     };
 
     recognition.onnomatch = () => {
-        resultText.innerText = "もう一度試してください";
+        inputBalloon.innerText = "もう一度試してください";
     };
 
     recognition.onend = () => {
