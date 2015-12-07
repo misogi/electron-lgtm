@@ -46,3 +46,4 @@ typings/
 
 *.js
 /tsd-debug.log
+/env.sh

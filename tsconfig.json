@@ -29,7 +29,8 @@
         "typings/node/node.d.ts",
         "typings/request/request.d.ts",
         "typings/tsd.d.ts",
-        "typings/webspeechapi/webspeechapi.d.ts"
+        "typings/webspeechapi/webspeechapi.d.ts",
+        "zatsudan.ts"
     ],
     "atom": {
         "rewriteTsconfig": true
