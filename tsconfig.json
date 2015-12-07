@@ -25,6 +25,7 @@
         "slack.ts",
         "speech.ts",
         "typings/form-data/form-data.d.ts",
+        "typings/github-electron/github-electron.d.ts",
         "typings/node/node.d.ts",
         "typings/request/request.d.ts",
         "typings/tsd.d.ts",
