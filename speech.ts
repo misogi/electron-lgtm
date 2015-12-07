@@ -16,7 +16,7 @@ export class Speech {
     const disp = document.getElementById("display");
 
     recognition.onresult = (event) => {
-        const inputText = event.results.item(0).item(0).transcript;
+        const inputText: string = event.results.item(0).item(0).transcript;
         let responceVoice: string;
         if (inputText.match(/ハッピーグルメ弁当/)) {
           responceVoice = 'どんどん？';

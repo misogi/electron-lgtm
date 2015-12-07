@@ -45,3 +45,4 @@ node_modules/
 typings/
 
 *.js
+/tsd-debug.log
