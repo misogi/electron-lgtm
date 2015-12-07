@@ -1,7 +1,6 @@
 'use strict';
 const request = require('request');
-class Slack
-{
+export class Slack {
   private httpOptions: any;
 
   constructor() {
@@ -16,15 +15,12 @@ class Slack
 
   send(msg: string): void {
     if (!this.httpOptions.url) {
-      console.log('slack URL is empty! specify env.SLACK_WEBHOOK_URL')
+      console.log('slack URL is empty! specify env.SLACK_WEBHOOK_URL');
       return;
     }
     this.httpOptions.body = JSON.stringify({
       'text': msg
     });
-    request.post(this.httpOptions, (err, res, body) => {
-    });
+    request.post(this.httpOptions);
   }
 }
-
-module.exports = Slack;

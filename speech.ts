@@ -1,6 +1,5 @@
 'use strict';
-class Speech
-{
+export class Speech {
   constructor() {
     const recognition = new webkitSpeechRecognition();
     recognition.lang = 'ja-JP';
@@ -10,7 +9,7 @@ class Speech
     msg.rate = 1;
     msg.pitch = 1;
     msg.lang = 'ja-JP';
-    const indicator = document.getElementById("indicator");
+    const indicator: HTMLElement = document.getElementById("indicator");
     const recordButton = document.getElementById("record");
     const recordCircle = document.getElementById("record-circle");
     const inputBalloon = document.getElementById("input-balloon");
@@ -18,7 +17,7 @@ class Speech
 
     recognition.onresult = (event) => {
         const inputText = event.results.item(0).item(0).transcript;
-        let responceVoice;
+        let responceVoice: string;
         if (inputText.match(/ハッピーグルメ弁当/)) {
           responceVoice = 'どんどん？';
           disp.setAttribute('src', 'img/dondon.jpg');
@@ -38,7 +37,7 @@ class Speech
     recognition.onend = () => {
         recordCircle.classList.remove("active");
         indicator.innerText = "";
-    }
+    };
 
     recordButton.onclick = () => {
         recognition.start();
@@ -47,5 +46,3 @@ class Speech
     };
   }
 }
-
-module.exports = Speech;
