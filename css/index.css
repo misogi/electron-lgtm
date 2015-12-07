@@ -11,7 +11,7 @@ img#display {
 
 .circle {
   position: relative;
-  margin-left: 340px;
+  margin-left: 380px;
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -63,9 +63,9 @@ div.active {
 .balloon-left {
 	position: relative;
 	display: inline-block;
-	padding: 10px 15px;
+	padding: 30px;
 	width: auto;
-	min-width: 215px;
+	min-width: 115px;
   margin: 10px;
 	color: #F6F6F6;
 	line-height: 90px;
@@ -90,10 +90,10 @@ div.active {
 .balloon-right {
   position: relative;
   display: inline-block;
-  padding: 10px 15px;
+  padding: 30px;
   margin: 10px;
   width: auto;
-  min-width: 215px;
+  min-width: 115px;
   color: #F6F6F6;
   line-height: 90px;
   text-align: right;
@@ -101,6 +101,7 @@ div.active {
   background: #19283C;
   z-index: 0;
 }
+
 .balloon-right:after {
   content: "";
   position: absolute;

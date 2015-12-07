@@ -32,20 +32,16 @@ export class Speech {
 
         this.show(voicesArea);
 
-        let responceVoice: string;
         if (inputText.match(/ハッピーグルメ弁当/)) {
-          responceVoice = 'どんどん？';
           this.show(resultImage);
           resultImage.setAttribute('src', 'img/dondon.jpg');
+          this.speech('どんどん？', outputBalloon);
         } else {
           this.hide(resultImage);
           zatsudan.talk(inputText, this.context).on('data', (res) => {
             const json = JSON.parse(res);
-            responceVoice = json.utt;
             this.context = json.context;
-            this.synth.text = responceVoice;
-            outputBalloon.innerText = responceVoice;
-            speechSynthesis.speak(this.synth);
+            this.speech(json.utt, outputBalloon);
           })
         }
     };
@@ -69,13 +65,18 @@ export class Speech {
   }
 
   private show(elem: HTMLElement) {
-            elem.classList.add('visible');
-            elem.classList.remove('collapse');
+    elem.classList.add('visible');
+    elem.classList.remove('collapse');
   }
 
   private hide(elem: HTMLElement) {
+    elem.classList.add('collapse');
+    elem.classList.remove('visible');
+  }
 
-              elem.classList.add('collapse');
-              elem.classList.remove('visible');
+  private speech(res: string, elem: HTMLElement) {
+    this.synth.text = res;
+    elem.innerText = res;
+    speechSynthesis.speak(this.synth);
   }
 }
