@@ -52,6 +52,7 @@ div.active {
   width: 100%;
   bottom: 0;
 }
+
 .collapse {
   visibility: collapse;
 }
