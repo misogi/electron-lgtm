@@ -9,7 +9,7 @@ export class Zatsudan {
     'APIKEY=' + key;
   }
 
-  public talk(input: string, context: string) {
+  public talk(input: string, context: string): request.Request {
     const params = {
       url: this.url,
       method: 'POST',

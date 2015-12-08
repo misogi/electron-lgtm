@@ -12,13 +12,13 @@
       "commit": "e5a27ea95e47b95333784f1f0d590127b4e39a89"
     },
     "node/node.d.ts": {
-      "commit": "e5a27ea95e47b95333784f1f0d590127b4e39a89"
+      "commit": "5c3e47967affa3c4128a3875d1664ba206ae1b0f"
     },
     "webspeechapi/webspeechapi.d.ts": {
       "commit": "e5a27ea95e47b95333784f1f0d590127b4e39a89"
     },
     "github-electron/github-electron.d.ts": {
-      "commit": "e5a27ea95e47b95333784f1f0d590127b4e39a89"
+      "commit": "5c3e47967affa3c4128a3875d1664ba206ae1b0f"
     }
   }
 }

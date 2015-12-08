@@ -13,14 +13,16 @@ export class Slack {
     };
   }
 
-  public send(msg: string): void {
-    if (!this.httpOptions.url) {
+  public send(msg: string): request.Request {
+    if (!this.httpOptions.uri) {
       console.log('slack URL is empty! specify env.SLACK_WEBHOOK_URL');
       return;
     }
     this.httpOptions.body = JSON.stringify({
-      'text': msg
+      'text': msg,
+      'username': 'Slackおじさん Electron版',
+      'icon_url': 'https://slack.com/img/icons/app-57.png'
     });
-    request.post(this.httpOptions);
+    return request.post(this.httpOptions);
   }
 }

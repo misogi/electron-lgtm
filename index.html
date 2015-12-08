@@ -10,32 +10,35 @@
 
 <body>
   <div id="voices" class="collapse">
-  <div class="right">
-    <div class="balloon-right" id="input-balloon">
+    <div class="right">
+      <div class="balloon-right" id="input-balloon">
+      </div>
+    </div>
+    </br>
+    <div id="output-area">
+      <div class="balloon-left">
+        <div id="output-balloon"></div>
+        <img id="display" src="">
+        </img>
+      </div>
     </div>
   </div>
-  </br>
-  <div id="output-area">
-  <div class="balloon-left">
-    <div id="output-balloon"></div>
-    <img id="display" src="">
-    </img>
-  </div>
-</div>
-</div>
   </br>
 
-<div class="bottom">
-  <div class="circle" id="record-circle">
-    <i class="fa fa-microphone"></i>
-    <a href="#" id="record">
-    </a>
-  </div>
-  <div class="center">
-    <div id="indicator">
+  <div class="bottom">
+    <div class="circle" id="record-circle">
+      <i class="fa fa-microphone"></i>
+      <a href="#" id="record">
+      </a>
     </div>
+    <div class="center">
+      <div id="indicator">
+      </div>
+    </div>
+    <label for="is-slack-mode">
+      <input type="checkbox" id="is-slack-mode"><i class="fa fa-slack"></i>
+    </label>
   </div>
-</div>
   <script src="index.js"></script>
 </body>
 
