@@ -7,6 +7,7 @@ export class Speech {
   private synth: SpeechSynthesisUtterance;
   private context: string;
   private outputArea: HTMLElement;
+  private outputBalloon: HTMLElement;
 
   constructor() {
     this.recognition = new webkitSpeechRecognition();
@@ -25,8 +26,8 @@ export class Speech {
     const recordButton = document.getElementById('record');
     const recordCircle = document.getElementById('record-circle');
     const inputBalloon = document.getElementById('input-balloon');
-    const outputBalloon = document.getElementById('output-balloon');
     const resultImage = document.getElementById('display');
+    this.outputBalloon = document.getElementById('output-balloon');
     this.outputArea = document.getElementById('output-area');
     const isSlackMode: HTMLInputElement = <HTMLInputElement>document.getElementById('is-slack-mode');
 
@@ -37,24 +38,24 @@ export class Speech {
 
       if (isSlackMode.checked) {
         slack.send(inputText).on('data', (res) => {
-          outputBalloon.innerHTML = '<i class="fa fa-slack"></i>';
+          this.outputBalloon.innerHTML = '<i class="fa fa-slack"></i>';
           this.show(this.outputArea);
         });
       } else if (inputText.match(/ハッピーグルメ弁当/)) {
         this.show(resultImage);
         resultImage.setAttribute('src', 'img/dondon.jpg');
-        this.speech('どんどん？', outputBalloon);
+        this.speak('どんどん？');
       } else if (inputText.match(/勉強会と/)) {
         this.show(resultImage);
         resultImage.setAttribute('src', 'img/hmrb.png');
-        this.speech('浜松ルビー', outputBalloon);
+        this.speak('浜松ルビー');
       } else {
         zatsudan.talk(inputText, this.context).on('data', (res) => {
           const json = JSON.parse(res);
           this.context = json.context;
-          this.speech(json.utt, outputBalloon);
+          this.speak(json.utt);
         }).on('error', (err) => {
-          this.speech('エラー', outputBalloon);
+          this.speak('エラー');
         });
       }
     };
@@ -88,9 +89,9 @@ export class Speech {
     elem.classList.add('collapse');
   }
 
-  private speech(res: string, elem: HTMLElement): void {
+  private speak(res: string): void {
     this.synth.text = res;
-    elem.innerText = res;
+    this.outputBalloon.innerText = res;
     speechSynthesis.speak(this.synth);
     this.show(this.outputArea);
   }
