@@ -37,10 +37,15 @@ export class Speech {
       this.show(inputBalloon);
 
       if (isSlackMode.checked) {
-        slack.send(inputText).on('data', (res) => {
-          this.outputBalloon.innerHTML = '<i class="fa fa-slack"></i>';
-          this.show(this.outputArea);
-        });
+        const response = slack.send(inputText);
+        if (!response) {  
+          this.speak('エラー');
+        } else {
+          response.on('data', (res) => {
+            this.outputBalloon.innerHTML = '<i class="fa fa-slack"></i>';
+            this.show(this.outputArea);
+          }); 
+        }
       } else if (inputText.match(/ハッピーグルメ弁当/)) {
         this.show(resultImage);
         resultImage.setAttribute('src', 'img/dondon.jpg');
@@ -50,12 +55,16 @@ export class Speech {
         resultImage.setAttribute('src', 'img/hmrb.png');
         this.speak('浜松ルビー');
       } else {
-        zatsudan.talk(inputText, this.context).on('data', (res) => {
-          const json = JSON.parse(res);
-          this.context = json.context;
-          this.speak(json.utt);
-        }).on('error', (err) => {
-          this.speak('エラー');
+        zatsudan.talk(inputText, this.context).on('response', (res) => {
+          if (res.statusCode === 200) {
+            res.on('data', (data) => {
+              const json = JSON.parse(data);
+              this.context = json.context;
+              this.speak(json.utt);
+            }); 
+          } else {
+            this.speak('エラー');
+          }
         });
       }
     };

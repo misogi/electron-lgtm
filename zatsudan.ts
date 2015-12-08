@@ -18,11 +18,9 @@ export class Zatsudan {
         context: context,
         bloodtype: 'B',
         mode: 'dialog'
-      },
-      headers: {
-        'Content-Type': 'application/json'
       }
     };
+    
     return request.post(params);
   }
 }
