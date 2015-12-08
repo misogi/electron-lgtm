@@ -1,5 +1,7 @@
 body {
   font-family: Verdana, "游ゴシック", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  background-image: url('../img/metal.png');
+  background-size: cover;
 }
 #indicator {
   font-size: 40px;
@@ -9,11 +11,12 @@ img#display {
 }
 .circle {
   position: relative;
-  margin-left: 380px;
+  margin-left: 40%;
+  margin-bottom: 20px;
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-color: #CCC;
+  background-color: #666;
 }
 .circle i {
   position: absolute;
@@ -46,8 +49,9 @@ div.active {
 }
 .bottom {
   position: absolute;
-  width: 100%;
+  width: 99%;
   bottom: 0;
+  margin-bottom: 20px;
 }
 .collapse {
   visibility: collapse;
