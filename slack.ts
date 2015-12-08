@@ -19,9 +19,10 @@ export class Slack {
       return;
     }
     this.httpOptions.body = JSON.stringify({
-      'text': msg,
-      'username': 'Slackおじさん Electron版',
-      'icon_url': 'https://slack.com/img/icons/app-57.png'
+      text: msg,
+      channel: '#new-end-of-year',
+      username: 'Slackおじさん Electron版',
+      icon_url: 'http://blog-imgs-65.fc2.com/t/a/k/takatibi00/fvg5fcgbcgnz.jpg'
     });
     return request.post(this.httpOptions);
   }
