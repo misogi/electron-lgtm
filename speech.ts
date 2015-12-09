@@ -38,13 +38,13 @@ export class Speech {
 
       if (isSlackMode.checked) {
         const response = slack.send(inputText);
-        if (!response) {  
+        if (!response) {
           this.speak('エラー');
         } else {
           response.on('data', (res) => {
             this.outputBalloon.innerHTML = '<i class="fa fa-slack"></i>';
             this.show(this.outputArea);
-          }); 
+          });
         }
       } else if (inputText.match(/ハッピーグルメ弁当/)) {
         this.show(resultImage);
@@ -61,7 +61,7 @@ export class Speech {
               const json = JSON.parse(data);
               this.context = json.context;
               this.speak(json.utt);
-            }); 
+            });
           } else {
             this.speak('エラー');
           }

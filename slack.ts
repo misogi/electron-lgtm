@@ -14,14 +14,14 @@ export class Slack {
       console.log('slack URL is empty! specify env.SLACK_WEBHOOK_URL');
       return null;
     }
-    
+
     this.httpOptions.json = {
       text: msg,
       channel: '#new-end-of-year',
       username: 'Slackおじさん Electron版',
       icon_url: 'http://blog-imgs-65.fc2.com/t/a/k/takatibi00/fvg5fcgbcgnz.jpg'
     };
-    
+
     return request.post(this.httpOptions);
   }
 }

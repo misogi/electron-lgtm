@@ -20,7 +20,7 @@ export class Zatsudan {
         mode: 'dialog'
       }
     };
-    
+
     return request.post(params);
   }
 }
