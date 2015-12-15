@@ -1,6 +1,7 @@
 'use strict';
 import {Zatsudan} from './zatsudan';
 import {Slack} from './slack';
+import {IncomingMessage} from 'http';
 
 export class Speech {
   private recognition: SpeechRecognition;
@@ -41,7 +42,7 @@ export class Speech {
         if (!response) {
           this.speak('エラー');
         } else {
-          response.on('data', (res) => {
+          response.on('data', (res: IncomingMessage) => {
             this.outputBalloon.innerHTML = '<i class="fa fa-slack"></i>';
             this.show(this.outputArea);
           });
@@ -55,10 +56,10 @@ export class Speech {
         resultImage.setAttribute('src', 'img/hmrb.png');
         this.speak('浜松ルビー');
       } else {
-        zatsudan.talk(inputText, this.context).on('response', (res) => {
+        zatsudan.talk(inputText, this.context).on('response', (res: IncomingMessage) => {
           if (res.statusCode === 200) {
-            res.on('data', (data) => {
-              const json = JSON.parse(data);
+            res.on('data', (data: string) => {
+              const json: any = JSON.parse(data);
               this.context = json.context;
               this.speak(json.utt);
             });
