@@ -1,8 +1,9 @@
 'use strict';
-const app: GitHubElectron.App = require('app');
-const BrowserWindow = require('browser-window');
-
-require('crash-reporter').start();
+import * as electron from 'electron';
+const app: GitHubElectron.App = electron.app;
+const browserWindow = electron.BrowserWindow;
+const crashReporter = electron.crashReporter;
+crashReporter.start();
 
 let mainWindow: GitHubElectron.BrowserWindow = null;
 
@@ -11,8 +12,8 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
-  mainWindow = new BrowserWindow({width: 1024, height: 800});
-  mainWindow.loadUrl('file://' + __dirname + '/index.html');
+  mainWindow = new browserWindow({ height: 800, width: 1024 });
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   mainWindow.on('closed', () => {
     mainWindow = null;
