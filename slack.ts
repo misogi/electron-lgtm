@@ -16,7 +16,7 @@ export class Slack {
     }
 
     this.httpOptions.json = {
-      channel: '#new-end-of-year',
+      channel: '#general',
       text: msg,
       username: 'Slackおじさん Electron版',
       icon_url: 'http://blog-imgs-65.fc2.com/t/a/k/takatibi00/fvg5fcgbcgnz.jpg',

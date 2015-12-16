@@ -1,8 +1,11 @@
-## requirement
+# execute
 
 electron
 
-    npm -g install electron-prebuilt
+    npm install
+    $(npm bin)/electron .
+
+# compile
 
 typescript
 
@@ -21,7 +24,3 @@ typescript
 
     # Unix
     $ export SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX
-
-実行
-
-    electron .
